@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 @Slf4j
-public class AresRpcFactoryBean implements FactoryBean<Object>, InitializingBean,
+public class AresRpcFactoryBean implements FactoryBean<Object>,
         ApplicationContextAware {
 
     private Class<?> type;
@@ -76,11 +76,6 @@ public class AresRpcFactoryBean implements FactoryBean<Object>, InitializingBean
         return true;
     }
 
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-
-    }
 
     public String getName() {
         return name;

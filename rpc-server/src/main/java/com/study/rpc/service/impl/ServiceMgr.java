@@ -22,18 +22,22 @@ public class ServiceMgr {
         String serviceName = rpcRequest.getServiceName();
         String methodName = rpcRequest.getMethodName();
 
+        //获取RPC service 实例
         RpcController rpcController = getServiceByName(serviceName);
         if (rpcController == null) {
             throw new LogicException(1, "service not exist");
         }
+        //获取RPC service 实例中的方法
         Method method = getServiceMethod(rpcController, methodName);
         if (method == null) {
             throw new LogicException(2, "method not exist");
         }
+        //获取method的入参类型
         Type[] types = method.getGenericParameterTypes();
         Object parameter = null;
         //only process 0 or 1 args  others not process
         if (types != null && types.length == 1) {
+            //json 反序序列参数实例
             parameter = JSON.parseObject(rpcRequest.getPayLoad(), types[0]);
         }
         try {
